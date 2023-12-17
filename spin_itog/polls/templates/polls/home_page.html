@@ -1,0 +1,552 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<!--slider area start-->
+<section class="slider_section  mb-42">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12">
+                <div class="slider_area slider_three owl-carousel">
+
+                    {% for carusel in carusel %}
+                    <div class="slider_item">
+                    <img class="single_slider d-flex align-items-center" src="{{ carusel.carusel_image.url }}" alt="">
+                        <div class="slider_text">
+                            <h2>{{ carusel.carusel_text }}</h2>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 offset-md-4 offset-lg-0">
+                {% for baher_glav1 in baher_glav1 %}
+                <div class="sidebar_banner">
+                    <div class="banner_thumb osvetlenie">
+                        <a href="{% url 'product_detail' id=baher_glav1.id %}">
+                            <img src="{{ baher_glav1.image_for_banner.url }}" alt="">
+                        </a>
+                        <div class="banner_text osvetlenie">
+                            <h4>{{ baher_glav1.reklam_title|safe}}</h4>
+                            <h3>{{ baher_glav1.reklam_text|safe }}</h3>
+                            <h2>{{ baher_glav1.skidka }}</h2>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</section>
+<!--slider area end-->
+
+    <!--product area start-->
+    <section class="new_product_area mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="product_tab_button tab_button2">
+                        <ul class=" nav" role="tablist" id="nav-tab">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#featured" role="tab" aria-controls="featured" aria-selected="true"><span>Хит</span> Продаж</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#view" role="tab" aria-controls="view" aria-selected="false"><span>Рекомендуемый товар</span></a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#bestseller" role="tab" aria-controls="bestseller" aria-selected="false"><span>Новый</span> Товар</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="featured" role="tabpanel">
+                    <div class="new_product_container">
+
+                        {% for big_hit_prodaj in big_hit_prodaj %}
+                        <div class="sample_product">
+                            <div class="product_name">
+                                <h3><a href="{% url 'product_detail' id=big_hit_prodaj.id %}">
+                                        <h4>{{ big_hit_prodaj.name|safe}}</h4> 
+                                    </a>
+                                </h3>
+
+                                {% if big_hit_prodaj.reklam_title %}
+                                    <div class="manufacture_product">
+                                    <p>
+                                        <a href="{% url 'product_detail' id=big_hit_prodaj.id %}">
+                                            <h4>{{ big_hit_prodaj.reklam_title|safe}}</h4>
+                                        </a>
+                                    </p>
+                                    </div>
+                                {% else %}
+                                {% endif %}
+                            </div>
+
+                            {% if big_hit_prodaj.image_for_banner %}
+                            <div class="product_thumb">
+                                <a href="{% url 'product_detail' id=big_hit_prodaj.id %}">
+                                    <img src="{{ big_hit_prodaj.image_for_banner.url }}" alt="">
+                                </a>
+                            </div>
+                            {% else %}
+                            {% endif %}
+                    
+                            <div class="product_content">
+                                <span class="current_price">
+                                    {% if big_hit_prodaj.price %}
+                                    <h4>цена {{ big_hit_prodaj.price }} руб.</h4>
+                                    {% else %}
+                                    {% endif %}
+                                </span>
+                                <div class="price_box">
+                                    <span class="current_price">
+                                        {% if big_hit_prodaj.price %}
+                                            скидка {{ big_hit_prodaj.skidka }}
+                                        {% else %}
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="bar_percent">
+                                </div>
+                            </div>
+                            
+                            <div class="quantity_progress">
+                                <p class="product_available">Артикль: <span>{{big_hit_prodaj.id}}</span></p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <div class="product_carousel product_bg  product_column2 owl-carousel">
+                            <div class="small_product">
+
+                                {% for  hit_prodaj in hit_prodaj %}
+                                <div class="single_product">
+                                    {% if  hit_prodaj.skidka %}
+                                <div class="label_product">
+                                    <span class="label_sale">{{hit_prodaj.skidka}}</span>
+                                </div>
+                                {% else %}
+                                {% endif %}
+                                    <div class="product_content">
+                                        <h3><a href="{% url 'product_detail' id=hit_prodaj.id %}"><h4>{{hit_prodaj.name}}</h4></a></h3>
+                                        <div class="product_ratings">
+                                        </div>
+                                        {% if hit_prodaj.price %}
+                                        <div class="price_box">
+                                            <span class="current_price">{{hit_prodaj.price}} руб.</span>
+                                        </div>
+                                        {% else %}
+                                        {% endif %}
+                                        <p class="product_available">Артикль: <span>{{hit_prodaj.id}}</span></p>
+                                    
+                                    </div>
+                                    <div class="product_thumb">
+                                        <a class="primary_img" href="{% url 'product_detail' id=hit_prodaj.id %}"><img src="{{ hit_prodaj.image.url }}" alt=""></a>
+                                    </div>
+                                    
+                                </div>
+                                
+                                {% endfor %}
+
+                            </div>
+
+                            <div class="small_product">
+
+                                {% for  hit_prodaj2 in hit_prodaj2 %}
+                                <div class="single_product">
+                                    <div class="product_content">
+                                        <h3><a href="{% url 'product_detail' id=hit_prodaj2.id %}"><h4>{{hit_prodaj2.name}}</h4></a></h3>
+                                        <div class="product_ratings">
+                                        </div>
+                                        {% if hit_prodaj2.price %}
+                                        <div class="price_box">
+                                            <span class="current_price">{{hit_prodaj2.price}}</span>
+                                        </div>
+                                        {% else %}
+                                        {% endif %}
+                                        <div class="quantity_progress">
+                                            <p class="product_available">Артикль: <span>{{hit_prodaj2.id}}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="product_thumb">
+                                        <a class="primary_img" href="{% url 'product_detail' id=hit_prodaj2.id %}"><img src="{{ hit_prodaj2.image.url }}" alt=""></a>
+                                    </div>
+                                </div>
+                                {% endfor %} 
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--РЕКОМЕНДОВАННЫЙ ТОВАР НАЧАЛО-->
+                <!--РЕКОМЕНДОВАННЫЙ ТОВАР БОЛЬШАЯ ФОТО НАЧАЛО-->
+                <div class="tab-pane fade" id="view" role="tabpanel">
+                    <div class="new_product_container">
+                        
+                        {% for big_recomend in big_recomend %}
+                        <div class="sample_product">
+                            <div class="product_name">
+                                <h3><a href="{% url 'product_detail' id=big_recomend.id %}">
+                                    <h4>{{big_recomend.name|safe}}</h4> 
+                                    </a>
+                                </h3>
+
+                                {% if big_recomend.reklam_title %}
+                                <div class="manufacture_product">
+                                    <p><a href="{% url 'product_detail' id=big_recomend.id %}">
+                                        <h4>{{ big_recomend.reklam_title|safe }}</h4>
+                                        </a>
+                                    </p>
+                                </div>
+                                    {% else %}
+                                    {% endif %}
+                            </div>
+
+                            {% if big_recomend.image_for_banner %}
+                            <div class="product_thumb">
+                                <a href="{% url 'product_detail' id=big_recomend.id %}">
+                                    <img src="{{ big_recomend.image_for_banner.url }}" alt="">
+                                </a>
+                            </div>
+                            {% else %}
+                            {% endif %}
+
+                            <div class="product_content">
+                                <span class="current_price">
+                                    {% if big_recomend.price %}
+                                        <h4>цена {{ big_recomend.price }} руб.</h4>
+                                    {% else %}
+                                    {% endif %}        
+                                </span>
+
+                                <div class="price_box">
+                                    <span class="current_price">
+                                        {% if big_recomend.price %}
+                                            скидка {{ big_recomend.skidka }}
+                                        {% else %}
+                                        {% endif %}
+                                    </span>
+                                </div>        
+                                <div class="bar_percent">
+                                </div>
+                            </div>
+                            <div class="quantity_progress">
+                                <p class="product_available">Артикль: <span>{{big_recomend.id}}</span></p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!--РЕКОМЕНДОВАННЫЙ ТОВАР БОЛЬШАЯ ФОТО КОНЕЦ-->
+
+                        <!--РЕКОМЕНДОВАННЫЙ ТОВАР ПЕРВАЯ ЛИНИЯ НАЧАЛО-->
+                        <div class="product_carousel product_bg  product_column2 owl-carousel">
+                            <div class="small_product">
+                                {% for  recomend in recomend %}
+                                <div class="single_product">
+                                    {% if  recomend.skidka %}
+                                    <div class="label_product">
+                                        <span class="label_sale">{{recomend.skidka}}</span>
+                                    </div>
+                                    {% else %}
+                                    {% endif %}
+                                    <div class="product_content">
+                                        <h3><a href="{% url 'product_detail' id=recomend.id %}"><h4>{{recomend.name}}</h4></a></h3>
+                                        {% if recomend.price %}
+                                        <div class="price_box">
+                                            <span class="current_price">{{recomend.price}} руб.</span>
+                                        </div>
+                                        {% else %}
+                                        {% endif %}
+                                        <div class="quantity_progress">
+                                            <p class="product_available">Артикль: <span>{{recomend.id}}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="product_thumb">
+                                        <a class="primary_img" href="{% url 'product_detail' id=recomend.id %}">
+                                            <img src="{{ recomend.image.url }}" alt=""></a>
+                                    </div>
+                                </div>
+                                {% endfor %} 
+                            </div>
+                            <!--РЕКОМЕНДОВАННЫЙ ТОВАР ПЕРВАЯ ЛИНИЯ КОНЕЦ-->
+                            <!--РЕКОМЕНДОВАННЫЙ ТОВАР ВТОРАЯ ЛИНИЯ НАЧАЛО-->
+                            <div class="small_product">
+                                {% for  recomend2 in recomend2 %}
+                                <div class="single_product">
+                                    {% if  recomend2.skidka %}
+                                    <div class="label_product">
+                                        <span class="label_sale">{{recomend2.skidka}}</span>
+                                    </div>
+                                    {% else %}
+                                    {% endif %}
+                                    <div class="product_content">
+                                        <h3><a href="{% url 'product_detail' id=recomend2.id %}"><h4>{{recomend2.name}}</h4></a></h3>
+                                        {% if recomend2.price %}
+                                        <div class="price_box">
+                                            <span class="current_price">{{recomend2.price}} руб.</span>
+                                        </div>
+                                        {% else %}
+                                        {% endif %}
+                                        <div class="quantity_progress">
+                                            <p class="product_available">Артикль: <span>{{recomend2.id}}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="product_thumb">
+                                        <a class="primary_img" href="{% url 'product_detail' id=recomend2.id %}">
+                                            <img src="{{ recomend2.image.url }}" alt=""></a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!--РЕКОМЕНДОВАННЫЙ ТОВАР ВТОРАЯ ЛИНИЯ КОНЕЦ-->
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="bestseller" role="tabpanel">
+                    <div class="new_product_container">
+                        {% for big_new_tovar in big_new_tovar %}
+                        <div class="sample_product">
+                            <div class="product_name">
+                                <h3><a href="{% url 'product_detail' id=big_new_tovar.id %}">
+                                        {{big_new_tovar.reklam_title}}
+                                    </a>
+                                </h3>
+                                <div class="manufacture_product">
+                                    <p><a href="{% url 'product_detail' id=big_new_tovar.id %}">
+                                            {{big_new_tovar.reklam_text}}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="product_thumb">
+                                <a href="{% url 'product_detail' id=big_new_tovar.id %}">
+                                    <img src="{{ big_new_tovar.image_for_banner.url }}" alt="">
+                                </a>
+                            </div>
+                            <div class="product_content">
+                                <div class="price_box">
+                                    <span class="current_price">{{big_new_tovar.skidka}}</span>
+                                </div>
+                                <div class="quantity_progress">
+                                    <p class="product_available">Артикль: <span>9800</span></p>
+                                </div>
+                                <div class="bar_percent">
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="product_carousel product_bg  product_column2 owl-carousel">
+                            <div class="small_product">
+                                {% for  new_tovar in new_tovar %}
+                                <div class="single_product">
+                                    <div class="product_content">
+                                        <h3><a href="{% url 'product_detail' id=new_tovar.id %}">
+                                            {{new_tovar.name}}</a></h3>
+                                        
+                                        <div class="price_box">
+                                            <span class="regular_price">{{new_tovar.price}} руб.</span>
+                                        </div>
+                                    </div>
+                                    <div class="product_thumb">
+                                        <a class="primary_img" href="{% url 'product_detail' id=new_tovar.id %}">
+                                            <img src="{{ new_tovar.image.url }}" alt=""></a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="small_product">
+                                {% for  new_tovar2 in new_tovar2 %}
+                                <div class="single_product">
+                                    <div class="product_content">
+                                        <h3><a href="{% url 'product_detail' id=new_tovar2.id %}">
+                                            {{new_tovar2.name}}</a></h3>
+                                        <div class="price_box">
+                                            <span class="regular_price">{{new_tovar2.price}} руб.</span>
+                                        </div>
+                                    </div>
+                                    <div class="product_thumb">
+                                        <a class="primary_img" href="{% url 'product_detail' id=new_tovar2.id %}">
+                                            <img src="{{ new_tovar2.image.url }}" alt=""></a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--product area end-->
+
+    <!--banner area start-->
+    <section class="banner_area mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="banner_container">
+                        {% for carusel_home_page in carusel_home_page %}
+                        <div class="single_banner">
+                            <div class="banner_thumb">
+                                <a href="{% url 'product_detail' id=carusel_home_page.id %}">
+                                    <img src="{{ carusel_home_page.image_for_banner.url }}" alt="">
+                                </a>
+                                <div class="banner_text osvetlenie">
+                                    <h3>{{ carusel_home_page.reklam_title|safe}}</h3>
+                                    <h2>{{ carusel_home_page.skidka|safe}}</h2>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        {% for carusel_home_page2 in carusel_home_page2 %}
+                        <div class="single_banner">
+                            <div class="banner_thumb">
+                                <a href="{% url 'product_detail' id=carusel_home_page2.id %}">
+                                    <img src="{{ carusel_home_page2.image_for_banner.url }}" alt="">
+                                </a>
+                                <div class="banner_text osvetlenie">
+                                    <h3>{{ carusel_home_page2.reklam_title|safe}}</h3>
+                                    <h2>{{ carusel_home_page2.skidka|safe}}</h2>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--banner area end-->
+
+    <!--product area start-->
+    <section class="product_area mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    
+                    <div class="section_title">
+                        <h2><span> <strong>Специальное</strong>Предложение</span></h2>
+                    </div>
+                    <div class="product_carousel product_column5 owl-carousel">
+                        {% for specpredlojenie in specpredlojenie %}
+                        <div class="single_product">
+                            <div class="product_name">
+                                <h3><a href="{% url 'product_detail' id=specpredlojenie.id %}">
+                                    {{specpredlojenie.reklam_title|safe}}</a></h3>
+                                <p class="manufacture_product">
+                                    <a href="{% url 'product_detail' id=specpredlojenie.id %}">
+                                    в наличии</a></p>
+                            </div>
+                            <div class="product_thumb">
+                                <a class="primary_img" href="{% url 'product_detail' id=specpredlojenie.id %}">
+                                    <img src="{{ specpredlojenie.image_for_banner.url }}" alt="">
+                                </a>
+                                <div class="label_product">
+                                    <span class="label_sale">{{specpredlojenie.skidka}}</span>
+                                </div>
+                            </div>
+                            <div class="product_content">
+                                
+                                <div class="product_footer d-flex align-items-center">
+                                    <div class="price_box">
+                                        <span class="regular_price">{{specpredlojenie.price}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}        
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--product area end-->
+
+    <!--banner area start-->
+    <section class="banner_area mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% for big_banner_glav_vnizy in big_banner_glav_vnizy %}
+                    <div class="single_banner banner_fullwidth">
+                        <div class="banner_thumb">
+                            <a href="{% url 'product_detail' id=big_banner_glav_vnizy.id %}">
+                                <img src="{{ big_banner_glav_vnizy.image_for_banner.url }}" alt="">
+                            </a>
+                            <div class="banner_text osvetlenie">
+                                <h2>{{ big_banner_glav_vnizy.reklam_title }}</h2>
+                                <h3>{{ big_banner_glav_vnizy.skidka }}</h3>
+                                <p>{{ big_banner_glav_vnizy.reklam_text }}</p>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--banner area end-->
+
+    <!--product area start-->
+    <section class="product_area mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section_title">
+                        <h2><span> <strong>Самые</strong>Продаваемые</span></h2>
+                        <ul class="product_tab_button nav" role="tablist" id="nav-tab2">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#brake" role="tab" aria-controls="brake" aria-selected="true">Brake Parts</a>
+                            </li>
+                            <li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="brake" role="tabpanel">
+                    <div class="product_carousel product_column5 owl-carousel">
+                        {% for samie_prodavaemie in samie_prodavaemie %}
+                        <div class="single_product_list">
+                            <div class="single_product">
+                                <div class="product_name">
+                                    <h3><a href="{% url 'product_detail' id=samie_prodavaemie.id %}">{{ samie_prodavaemie.name }}</a></h3>
+                                    <p class="manufacture_product"><a href="{% url 'product_detail' id=samie_prodavaemie.id %}">Вналичии</a></p>
+                                </div>
+                                <div class="product_thumb">
+                                    <a class="primary_img" href="{% url 'product_detail' id=samie_prodavaemie.id %}"><img src="{{ samie_prodavaemie.image_for_banner.url }}" alt=""></a>
+                                    <div class="label_product">
+                                        <span class="label_sale">{{ samie_prodavaemie.skidka }}</span>
+                                    </div>
+                                </div>
+                                <div class="product_content">
+                                    <div class="product_footer d-flex align-items-center">
+                                        <div class="price_box">
+                                            <span class="regular_price">{{ samie_prodavaemie.price }} руб.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div> 
+                        {% endfor %} 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--product area end-->
+
+{% endblock %}

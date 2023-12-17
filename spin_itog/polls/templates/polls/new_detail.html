@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<!--blog body area start-->
+<div class="blog_details blog_padding mt-23">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12">
+                <!--blog grid area start-->
+                <div class="blog_details_wrapper">
+                    <div class="blog_thumb">
+                        <img src="{{ new_detail.image_new.url }}" alt="">
+                    </div>
+                    <div class="blog_content">
+                        <h3 class="post_title">{{new_detail.title_new}}</h3>
+                        
+                        <div class="post_content">
+                            <p>{{new_detail.body_new}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!--blog grid area start-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--blog section area end-->
+
+{% endblock %}

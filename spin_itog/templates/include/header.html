@@ -1,0 +1,208 @@
+<header class="header_area header_padding">
+    <!--header top start-->
+    <div class="header_top top_two">
+        <div class="container">
+            <div class="top_inner">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6">
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--header top start-->
+    <!--header middel start-->
+    <div class="header_middle middle_two">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-3">
+                    <div class="logo">
+                        <a href="{% url 'home_page' %}"><img src="/static/img/logo/spin1.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9">
+                    <div class="middel_right">
+                        <div class="search-container search_two">
+                            <form action="{% url 'search' %}" method="GET">
+                                <div class="search_box">
+                                    <input placeholder="Поиск товара ..." type="text" name="q">
+                                    <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="middel_right_info">
+                            <div>
+                                {% for contact in contact %}
+                                <h4>тел. {{contact.tel}}</h4> 
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--header middel end-->
+    
+    <!--mini cart-->
+    <div class="mini_cart">
+        <div class="cart_close">
+            <div class="cart_text">
+                <h3>cart</h3>
+            </div>
+            <div class="mini_cart_close">
+                <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+            </div>
+        </div>
+        <div class="cart_item">
+            <div class="cart_img">
+                <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
+            </div>
+            <div class="cart_info">
+                <a href="#">JBL Flip 3 Splasroof Portable Bluetooth 2</a>
+
+                <span class="quantity">Qty: 1</span>
+                <span class="price_cart">$60.00</span>
+
+            </div>
+            <div class="cart_remove">
+                <a href="#"><i class="ion-android-close"></i></a>
+            </div>
+        </div>
+        <div class="cart_item">
+            <div class="cart_img">
+                <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
+            </div>
+            <div class="cart_info">
+                <a href="#">Koss Porta Pro On Ear Headphones </a>
+                <span class="quantity">Qty: 1</span>
+                <span class="price_cart">$69.00</span>
+            </div>
+            <div class="cart_remove">
+                <a href="#"><i class="ion-android-close"></i></a>
+            </div>
+        </div>
+        <div class="mini_cart_table">
+            <div class="cart_total">
+                <span>Sub total:</span>
+                <span class="price">$138.00</span>
+            </div>
+            <div class="cart_total mt-10">
+                <span>total:</span>
+                <span class="price">$138.00</span>
+            </div>
+        </div>
+
+        <div class="mini_cart_footer">
+            <div class="cart_button">
+                <a href="cart.html">View cart</a>
+            </div>
+            <div class="cart_button">
+                <a class="active" href="checkout.html">Checkout</a>
+            </div>
+
+        </div>
+
+    </div>
+    <!--mini cart end-->
+    
+    <!--header bottom satrt-->
+    <div class="header_bottom bottom_two sticky-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="header_bottom_container">
+                        <div class="categories_menu">
+                            <div class="categories_title">
+                                <h2 class="categori_toggle">Каталог</h2>
+                            </div>
+                            <div class="categories_menu_toggle">
+                                <ul>
+                                  {% for kategory in kategory %}
+                                    <li><a href="{% url 'category_detail' kategory.slug %}">
+                                        {{kategory.title_kategory}}</a></li>
+                                   {% endfor %} 
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="main_menu">
+                            <nav>
+                                <ul>
+                                    <li><a href="/{{ home_page.url }}">Главная</a>
+                                        
+                                    </li>
+                                    <li><a href="/news/{{ news.url }}">Новости</a></li>
+                                    <li><a href="/onas/{{ onas.url }}">О Нас</a></li>
+                                    <li><a href="/contact/{{ contact.url }}">Контакты</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--header bottom end-->
+</header>
+
+
+<!--Offcanvas menu area start-->
+<div class="off_canvars_overlay"></div>
+<div class="Offcanvas_menu">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="canvas_open">
+                    <span>Меню</span>
+                    <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+                </div>
+                <div class="Offcanvas_menu_wrapper">
+
+                    <div class="canvas_close">
+                        <a href="#"><i class="ion-android-close"></i></a>
+                    </div>
+
+                    {% comment %} <div class="Offcanvas_follow">
+                        <label>Follow Us:</label>
+                        <ul class="follow_link">
+                            <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                            <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                            <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                            <li><a href="#"><i class="ion-social-youtube"></i></a></li>
+                        </ul>
+                    </div> {% endcomment %}
+                    <div class="search-container">
+                        <form action="#">
+                            <div class="search_box">
+                                <input placeholder="Поиск товара..." type="text" name="q">
+                                <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="menu" class="text-left ">
+                        <ul class="offcanvas_main_menu">
+                            <li class="menu-item-has-children">
+                                <a href="/{{ home_page.url }}">Главная</a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="/news/{{ news.url }}">Новости</a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="/onas/{{ onas.url }}">О Нас</a></li>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <li><a href="/contact/{{ contact.url }}">Контакты</a></li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Offcanvas menu area end-->
+

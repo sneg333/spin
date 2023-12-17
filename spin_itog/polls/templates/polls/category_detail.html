@@ -1,0 +1,142 @@
+{% extends "index.html" %}
+
+{% block content %}
+<!--shop  area start-->
+<div class="shop_area shop_fullwidth">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!--shop wrapper start-->
+                <!--shop toolbar start-->
+                <div class="shop_title">
+                    <h1>{{ kategory_detail.title_kategory }}</h1>
+                </div>
+                <div class="shop_toolbar_wrapper">
+                    <div class="shop_toolbar_btn">
+                        <button data-role="grid_4" data-target="col-lg-4 col-md-4 col-12" type="button" class=" btn-grid-4" data-toggle="tooltip" title="4"></button>
+                        <button data-role="grid_list" data-target="col-lg-5 col-md-6 col-12" type="button" class="btn-list" data-toggle="tooltip" title="List"></button>
+                    </div>
+                </div>
+                <!--shop toolbar end-->
+                <div class="row shop_wrapper">
+                    
+                    {% for product in products %}
+                    <div class="col-lg-3 col-md-4 col-12 ">                       
+                        <div class="single_product">
+                            <div class="product_name grid_name">
+                                <h3><a href="{% url 'product_detail' id=product.id %}">{{product.name}}</a></h3>
+                                <p class="manufacture_product"><a href="{% url 'product_detail' id=product.id %}">В наличии</a></p>
+                            </div>
+                            <div class="product_thumb">
+                                <a class="primary_img" href="{% url 'product_detail' id=product.id %}">
+                                    <img src="{{ product.image.url }}" alt="">
+                                </a>
+                                <a class="secondary_img" href="{% url 'product_detail' id=product.id %}">
+                                    <img src="assets/img/product/product11.jpg" alt="">
+                                </a>
+                                {% if  product.skidka %}
+                                <div class="label_product">
+                                    <span class="label_sale">{{product.skidka}}</span>
+                                </div>
+                                {% else %}
+                                {% endif %}
+                            </div>
+                            <div class="product_content grid_content">
+                                <div class="content_inner">
+                                    <div class="product_footer d-flex align-items-center">
+                                        <div class="price_box">
+                                            <span class="current_price">{{product.price}} руб.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_content list_content">
+                                <div class="left_caption">
+                                    <div class="product_name">
+                                        <h3><a href="{% url 'product_detail' id=product.id %}">
+                                            {{ product.name }}</a></h3>
+                                    </div>
+                                    <div class="product_desc">
+                                        <p>{{ product.description|truncatechars:25 }}</p>
+                                    </div>
+                                </div>
+                                <div class="right_caption">
+                                    <div class="text_available">
+                                        <p>Доступно: <span>99 </span></p>
+                                    </div>
+                                    <div class="price_box">
+                                        <span class="current_price">{{product.price}} руб.</span>                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                
+                </div>
+                <div class="shop_toolbar t_bottom">
+                    <div class="pagination">
+                        {% if products.has_other_pages %}
+                        <ul>
+                            {% if products.has_previous %}
+                            <li>
+                                <a href="?page={{ products.previous_page_number }}"> 
+                                    <<
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% for i in products.paginator.page_range %}
+                            
+                            {% if products.number == i %}
+    
+                            <li class="current">
+                                {{ i }} 
+                            </li>
+    
+                            {% elif i >= products.number|add:-3 and i <= products.number|add:3 %}
+                            <li>
+                                <a href="?page={{ i }}">
+                                    {{ i }}
+                                </a>
+                            </li>
+                            {% endif %}
+                            
+                            {% endfor %}
+    
+                            <li class="next">
+                                {% if products.has_next %}
+                                    <a href="?page={{ products.next_page_number }}"> 
+                            >>
+                                    </a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                <!--shop toolbar end-->
+                <!--shop wrapper end-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--shop  area end-->
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const productContainer = document.getElementById("product-container");
+        const buttons = document.querySelectorAll("[data-role^='grid']");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function() {
+                buttons.forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+
+                const targetClass = this.getAttribute("data-target");
+                productContainer.className = `row shop_wrapper ${targetClass}`;
+            });
+        });
+    });
+</script> 
+{% endblock %}

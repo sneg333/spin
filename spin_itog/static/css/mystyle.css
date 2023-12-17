@@ -1,0 +1,50 @@
+.slider_item {
+    position: relative;
+}
+
+/* Стили для текста на слайдере */
+.slider_text {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    color: #f2da00;
+    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+}
+/* Стили для блока за текстом */
+.slider_text::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.40);/* прозрачность */
+    border-radius: 10px; /* Закругленные углы */
+    z-index: -1;
+}
+/* Стили для ссылки внутри .slider_text */
+.slider_text a {
+    color: inherit; /* Унаследуется исходный цвет текста */
+    pointer-events: auto; /* Активируем события указателя для ссылки */
+}
+
+/* Стили для ссылки при наведении */
+.slider_text a:hover {
+    color: inherit; /* Унаследуется исходный цвет текста */
+}
+
+.osvetlenie {
+    background-color: rgba(212, 212, 212, 0.60);/* прозрачность */
+    padding-left: 0%;
+    border-radius: 10px; /* Закругленные углы */
+
+}
+
+.zatemnenie {
+    background-color: rgba(28, 28, 28, 0.4);/* прозрачность */
+    padding-left: 0%;
+    border-radius: 10px; /* Закругленные углы */
+
+}
