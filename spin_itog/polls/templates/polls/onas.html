@@ -3,12 +3,14 @@
 {% block content %}
 {% for onas in onas %}
 <!--slider area start-->
+{% if onas.image_uslugi %}
 <section class="slider_section slider_two mb-50">
 
         <img src="{{ onas.image_uslugi.url }}">
         
     </div>
 </section>
+{% endif %}
 
 <!--Privacy Policy area start-->
 <div class="privacy_policy_main_area">
@@ -18,7 +20,7 @@
             <div class="col-12">
                 <div class="privacy_content section_1">
 
-                    <p> </a>{{onas.body_onas}}
+                    <p>{{onas.body_onas|safe}} </p>
 
                 </div>
             </div>
@@ -28,7 +30,7 @@
 <!--slider area end-->
 
 <!--services img area-->
-<div class="about_gallery_section">
+<!-- <div class="about_gallery_section">
     
     <div class="container">
         <div class="row">
@@ -47,7 +49,7 @@
             {% endfor %}
         </div>
     </div>
-</div>
+</div> -->
 <!--services img end-->
 
 <!--faq area start-->

@@ -1,0 +1,107 @@
+
+
+<div class="shopping_cart_area mt-32">
+    <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table_desc">
+                        <div class="cart_page table-responsive">
+                            
+                            <table class="table table-responsive">
+                                <thead>
+                                  <tr>
+                                    {% for shapka_articl in product.shapkaartikul.all %}
+                                      <th class="product_remove">{{shapka_articl.body1}}</th>
+                                      {% if shapka_articl.body2 %}
+                                      <th class="product_remove">{{shapka_articl.body2}}</th>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if shapka_articl.body3 %}
+                                      <th class="product_remove">{{shapka_articl.body3}}</th>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if shapka_articl.body4 %}
+                                      <th class="product_remove">{{shapka_articl.body4}}</th>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if shapka_articl.body5 %}
+                                      <th class="product_remove">{{shapka_articl.body5}}</th>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if shapka_articl.body6 %}
+                                      <th class="product_remove">{{shapka_articl.body6}}</th>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if shapka_articl.body7 %}
+                                      <th class="product_remove">{{shapka_articl.body7}}</th>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if shapka_articl.body8 %}
+                                      <th class="product_remove">{{shapka_articl.body8}}</th>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if shapka_articl.body9 %}
+                                      <th class="product_remove">{{shapka_articl.body9}}</th>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if shapka_articl.body10 %}
+                                      <th class="product_remove">{{shapka_articl.body10}}</th>
+                                      {% else %}
+                                      {% endif %}
+                                    {% endfor %}
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for artikl in product.artikul.all %}
+                                    <tr>
+                                      {% if artikl.artbody1 %}
+                                      <td class="product_remove">{{artikl.artbody1}}</td>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if artikl.artbody2 %}
+                                      <td class="product_remove">{{artikl.artbody2}}</td>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if artikl.artbody3 %}
+                                      <td class="product_remove">{{artikl.artbody3}}</td>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if artikl.artbody4 %}
+                                      <td class="product_remove">{{artikl.artbody4}}</td>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if artikl.artbody5 %}
+                                      <td class="product_remove">{{artikl.artbody5}}</td>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if artikl.artbody6 %}
+                                      <td class="product_remove">{{artikl.artbody6}}</td>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if artikl.artbody7 %}
+                                      <td class="product_remove">{{artikl.artbody7}}</td>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if artikl.artbody8 %}
+                                      <td class="product_remove">{{artikl.artbody8}}</td>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if artikl.artbody9 %}
+                                      <td class="product_remove">{{artikl.artbody9}}</td>
+                                      {% else %}
+                                      {% endif %}
+                                      {% if artikl.artbody10 %}
+                                      <td class="product_remove">{{artikl.artbody10}}</td>
+                                      {% else %}
+                                      {% endif %}
+                                    </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<!--shopping cart area end -->

@@ -3,46 +3,35 @@
 {% block content %}
 {% for news in news %}
 
-<!--blog area start-->
-<div class="blog_page_section blog_padding mt-23">
+<div class="blog_page_section mt-23">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9 col-md-12">
-                <div class="blog_wrapper blog_fullwidth">
+            <div class="col-12">
+                <div class="blog_wrapper">
+
                     <div class="single_blog">
                         {% if news.image_new %}
-                        <div class="blog_thumb_active owl-carousel">
-                            <div class="single_blog_thumb">
-                                <a href="{% url 'new_detail' id=news.id %}">
-                                    <img src="{{ news.image_new.url }}">
-                                </a>
-                            </div>
+                        <div class="blog_thumb">
+                            <a href="{% url 'new_detail' id=news.id %}"><img src="{{ news.image_new.url }}" alt=""></a>
                         </div>
                         {% endif %}
                         <div class="blog_content">
-                            <h3><a href="{% url 'new_detail' id=news.id %}">
-                                    {{news.title_new}}
-                                </a>
-                            </h3>
-                            <div class="blog_meta">
-                                
-                            </div>
+                            <h3 style="text-transform: none;"><a href="{% url 'new_detail' id=news.id %}">{{news.title_new}}</a></h3>
+                            
                             <div class="blog_desc">
-                                <p>{{news.body_new}}</p>
+                                <p>{{news.body_new|safe|truncatewords:10}} </p>
                             </div>
                             <div class="readmore_button">
-                                <a href="{% url 'new_detail' id=news.id %}">
-                                    читать дальше
-                                </a>
+                                <a href="{% url 'new_detail' id=news.id %}">читать дальше</a>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--blog area end-->
 
 {% endfor %}
 

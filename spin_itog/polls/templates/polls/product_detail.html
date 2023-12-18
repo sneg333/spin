@@ -24,84 +24,77 @@
 </div>
 <!--breadcrumbs area end-->
 
-<!--product details start-->
-<div class="product_details mt-20">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="product-details-tab">
-                    <div id="img-1" class="zoomWrapper single-zoom">
-                        <img src="{{ product.image.url }}"  alt="big-1">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="product_d_right">
-                    <form action="#">
-
-                        <h1>{{ product.name }}</h1>
-                        {% if product.price %}
-                        <div class="price_box">
-                            <span class="current_price"> цена {{ product.price }} руб.</span>
-                        </div>
-                        {% else %}
-                        {% endif %}
-                        {% if  product.skidka %}
-                            <div class=" product_ratting">
-                                скидка на товар {{ product.skidka }}
-                            </div>
-                        {% else %}
-                        {% endif %}
-                        <div class="product_variant color">
-
-                            {% if product.available%} 
-                            <p><h1><img src="/static/img/green_circle.png" alt=""> 
-                            в наличии 
-                            <label><h1>{{ product.stock }} шт. </h1></label></h1></p> 
-                            <div class="product_meta">
-                                <span>Код товара: {{ product.id }}</span>
-                                <p>{{ product.description|truncatechars:25 }}</p>
-                            </div>
-
-                            {% else %}
-                                <p><h1><img src="/static/img/red_circle.png" alt="">
-                                <label><h1>нет в наличии  </h1></label></h1></p>
-                            {% endif %}
-                            
-                        </div>      
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--product details end-->
-
-<!--product info start-->
-<div class="product_d_info">
+<!--Checkout page section-->
+<div class="Checkout_section mt-32">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="product_d_inner">
-                    <div class="product_info_button">
-                        <ul class="nav" role="tablist" id="nav-tab">
-                            <li>
-                                <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">
-                                    Характеристики товара </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="info" role="tabpanel">
-                            <div class="product_info_content">
-                                <p>{{ product.description }}</p>
-                                </div>
-                        </div>
-                    </div>
+                <div class="user-actions">
+                    <h2> 
+                        {{ product.name }} 
+                        
+                    </h2> 
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--Checkout page section end-->
+
+   <!--contact area start-->
+    <div class="contact_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="product-details-tab">
+                        {% if product.image%}
+                        <div id="img-1" class="zoomWrapper single-zoom">
+                            <img src="{{ product.image.url }}"  alt="big-1">
+                        </div>
+                         {% else %}
+                         {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="product-details-tab">
+                        {% if product.image_shema %}
+                        <div id="img-1" class="zoomWrapper single-zoom">
+                            <img src="{{ product.image_shema.url }}"  alt="big-1">
+                        </div>
+                        {% else %}
+                         {% endif %}
+                    </div>
+                </div>
+            </div>
+    
+                    <div class="col-12">
+                        <div class="product_d_inner">
+                            <div class="product_info_button">
+                                <ul class="nav" role="tablist" id="nav-tab">
+                                    <li>
+                                        <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">
+                                            Характеристики товара </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="info" role="tabpanel">
+        
+                                    {% include 'include/110000.html' %}
+        
+                                    <div class="product_info_content">
+                                        {% for opisanie in product.opisanie_tovara.all %}
+                                        <p>{{ opisanie.description|safe }}</p>
+                                        {% endfor %}
+                                    </div>
+        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+        </div>
+    </div>
+
 <!--product info end-->
 {% endblock %}
