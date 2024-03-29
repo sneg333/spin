@@ -1,14 +1,14 @@
 {% extends "index.html" %}
 
 {% block content %}
-{% for news in news %}
 
-<div class="blog_page_section mt-23">
+
+<div class="blog_page_section blog_padding mt-23">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div class="blog_wrapper">
-
+            <div class="col-lg-9 col-md-12">
+                <div class="blog_wrapper blog_fullwidth">
+                    {% for news in news %}
                     <div class="single_blog">
                         {% if news.image_new %}
                         <div class="blog_thumb">
@@ -18,22 +18,22 @@
                         <div class="blog_content">
                             <h3 style="text-transform: none;"><a href="{% url 'new_detail' id=news.id %}">{{news.title_new}}</a></h3>
                             
-                            <div class="blog_desc">
+                            {% comment %} <div class="blog_desc">
                                 <p>{{news.body_new|safe|truncatewords:10}} </p>
-                            </div>
+                            </div> {% endcomment %}
                             <div class="readmore_button">
                                 <a href="{% url 'new_detail' id=news.id %}">читать дальше</a>
                             </div>
                         </div>
                     </div>
-                    
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-{% endfor %}
+
 
 <!--blog pagination area start-->
 <div class="blog_pagination">

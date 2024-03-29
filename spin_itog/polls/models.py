@@ -97,13 +97,26 @@ class Onas(models.Model):
     def __str__(self):
         return self.title_onas1
     
+# Модель описание продукта
+class OpisanieProduct(models.Model):
+    title = models.CharField(max_length=200, db_index=True, verbose_name="Название")
+    description = RichTextUploadingField(blank=True, verbose_name="описание")
+    vtoroe_opisanie = RichTextUploadingField(blank=True, verbose_name="второе описание")
+
+    class Meta:
+        verbose_name = 'описание товара'
+        verbose_name_plural = 'описание товара'
+
+    def __str__(self):
+        return self.title
+    
 
 '''Модель продукта'''
 class Product(models.Model):
     name = models.CharField(max_length=200, db_index=True, verbose_name="Название")
     image = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True, verbose_name="Изображение товара")
     description = models.TextField(blank=True, verbose_name="Описание")
-    price = models.DecimalField(null=True, blank=True, max_digits=10, decimal_places=2, verbose_name="Цена")
+    opisanie_tovara = models.ManyToManyField(OpisanieProduct, verbose_name='описание товара')
     stock = models.PositiveIntegerField(verbose_name="На складе")
     reklam_title = models.TextField(blank=True, verbose_name="Рекламный заголовок")
     reklam_text = models.TextField(blank=True, verbose_name="Рекламный текст")
@@ -168,7 +181,7 @@ class Setting(models.Model):
     title = models.CharField(max_length=150)
     keywords = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    icon = models.ImageField(upload_to='media/')
+    icon = models.ImageField(upload_to='media/', blank=True)
 
     def __str__(self):
         return self.title

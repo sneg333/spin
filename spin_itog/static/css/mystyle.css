@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.elowcustomtextcolor {
+    color: #ffd54c;
+}
+
 /* Стили для текста на слайдере */
 .slider_text {
     position: absolute;
@@ -36,7 +40,7 @@
 }
 
 .osvetlenie {
-    background-color: rgba(212, 212, 212, 0.60);/* прозрачность */
+    background-color: rgba(212, 212, 212, 0.5);/* прозрачность */
     padding-left: 0%;
     border-radius: 10px; /* Закругленные углы */
 

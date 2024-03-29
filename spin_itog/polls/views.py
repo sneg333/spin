@@ -29,6 +29,8 @@ def home_page(request):
     specpredlojenie = Product.objects.filter(specpredlojenie=True)
     samie_prodavaemie = Product.objects.filter(samie_prodavaemie=True)
 
+    setting = Setting.objects.get(pk=1)
+
     context = {
         'home': home,
         'products': products,
@@ -50,6 +52,7 @@ def home_page(request):
         'new_tovar2': new_tovar2,
         'specpredlojenie': specpredlojenie,
         'samie_prodavaemie': samie_prodavaemie,
+        'setting': setting,
         **get_constanta(),
     }
     return render(request, 'polls/home_page.html', context)

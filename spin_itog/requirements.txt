@@ -1,6 +1,7 @@
 Django==3.2.12
 djangorestframework==3.14.0
 Pillow
+
 django-ckeditor==6.0.0
 
 

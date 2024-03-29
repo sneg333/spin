@@ -81,6 +81,15 @@
                             {% for i in products.paginator.page_range %}
                             
                             {% if products.number == i %}
+
+                            <li class="active">
+                                <a href="#">
+                                <span>{{ i }} <span class="sr-only">(current)</span></span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
     
                             <li class="current">
                                 {{ i }} 
@@ -95,14 +104,13 @@
                             {% endif %}
                             
                             {% endfor %}
-    
-                            <li class="next">
-                                {% if products.has_next %}
+                            {% if products.has_next %}
+                                <li class="next">
                                     <a href="?page={{ products.next_page_number }}"> 
-                            >>
+                                        >>
                                     </a>
-                                {% endif %}
-                            </li>
+                                </li>
+                            {% endif %}
                         </ul>
                         {% endif %}
                     </div>
